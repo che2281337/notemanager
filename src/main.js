@@ -30,7 +30,13 @@ app.whenReady().then(() => {
     createWindow();
 });
 
-app.on("before-quit", () => {
+app.on("activate", () => {
+    if (BrowserWindow.getAllWindows().length === 0) {
+        createWindow();
+    }
+});
+
+app.on("window-all-closed", () => {
     try {
         if (db) db.close();
     } catch (e) {}
