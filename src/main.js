@@ -6,6 +6,8 @@ let db = null;
 let mainWindow = null;
 
 function createWindow() {
+    if (mainWindow) return;
+
     mainWindow = new BrowserWindow({
         width: 950,
         height: 650,
