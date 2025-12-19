@@ -42,13 +42,7 @@ app.on("window-all-closed", () => {
     } catch (e) {}
 });
 
-app.whenReady().then(() => {
-    db = openDb();
-    createWindow();
-
-    app.on("activate", () => {
-        if (BrowserWindow.getAllWindows().length === 0) createWindow();
-    });
+    app.quit();
 });
 
 app.on("window-all-closed", () => {
