@@ -22,7 +22,7 @@
   },
   "build": {
     "appId": "com.example.notes",
-    "productName": "Notes",
+    "productName": "StudyMemo",
     "directories": {
       "output": "dist"
     },
