@@ -1,23 +1,22 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8" />
-    <title>Менеджер заметок</title>
+    <title>StudyMemo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-
 <body class="bg-slate-50 text-slate-900">
 <div class="max-w-6xl mx-auto p-6">
-    <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between mb-6">
+    <div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between mb-6">
         <div>
-            <h1 class="text-2xl font-bold">Менеджер заметок</h1>
+            <h1 class="text-2xl font-bold">StudyMemo</h1>
         </div>
 
         <div class="flex gap-2 w-full md:max-w-xl">
             <input id="search"
                    class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2 focus:outline-none focus:ring-2 focus:ring-slate-300"
-                   placeholder="Поиск по заголовку или тексту..." />
+                   placeholder="Поиск по предмету, теме, описании..." />
             <button id="refresh"
                     class="shrink-0 rounded-xl px-4 py-2 bg-slate-900 text-white hover:bg-slate-800">
                 Обновить
@@ -28,34 +27,70 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5">
             <div class="flex items-center justify-between mb-4">
-                <h2 class="text-lg font-semibold">Добавить заметку</h2>
+                <h2 class="text-lg font-semibold">Новая запись</h2>
             </div>
 
             <div class="space-y-3">
-                <input id="title"
+                <div class="flex gap-2">
+                    <select id="subjectSelect"
+                            class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2 focus:outline-none focus:ring-2 focus:ring-slate-300">
+                        <option value="0">Выберите предмет...</option>
+                    </select>
+                </div>
+
+                <div class="flex gap-2">
+                    <input id="newSubject"
+                           class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2 focus:outline-none focus:ring-2 focus:ring-slate-300"
+                           placeholder="Новый предмет" />
+                    <button id="addSubjectBtn"
+                            class="shrink-0 rounded-xl px-4 py-2 bg-indigo-600 text-white hover:bg-indigo-500">
+                        Добавить
+                    </button>
+                </div>
+
+                <input id="topic"
                        class="w-full rounded-xl border border-slate-200 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-slate-300"
-                       placeholder="Заголовок" />
+                       placeholder="Тема занятия" />
 
                 <textarea id="content"
-                          class="w-full min-h-[160px] rounded-xl border border-slate-200 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-slate-300"
-                          placeholder="Текст заметки"></textarea>
+                          class="w-full min-h-[170px] rounded-xl border border-slate-200 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-slate-300"
+                          placeholder="Описание задания"></textarea>
 
-                <button id="add"
+                <button id="saveEntry"
                         class="w-full rounded-xl px-4 py-2 bg-emerald-600 text-white hover:bg-emerald-500">
-                    Сохранить
+                    Сохранить запись
                 </button>
 
+                <div class="flex gap-2">
+                    <button id="attachBtn" disabled
+                            class="w-full rounded-xl px-4 py-2 bg-slate-200 text-slate-500 cursor-not-allowed">
+                        Прикрепить файл
+                    </button>
+                </div>
+
                 <div id="msg" class="text-sm"></div>
+
+                <div class="mt-2">
+                    <h3 class="font-semibold mb-2">Вложения к выбранной записи</h3>
+                    <div id="attachments" class="space-y-2"></div>
+                </div>
             </div>
         </section>
 
         <section class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5">
             <div class="flex items-center justify-between mb-4">
-                <h2 class="text-lg font-semibold">Список заметок</h2>
+                <h2 class="text-lg font-semibold">Записи</h2>
                 <span id="count" class="text-sm text-slate-500"></span>
             </div>
 
-            <div id="list" class="space-y-3"></div>
+            <div class="flex gap-2 mb-3">
+                <select id="filterSubject"
+                        class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2 focus:outline-none focus:ring-2 focus:ring-slate-300">
+                    <option value="0">Все предметы</option>
+                </select>
+            </div>
+
+            <div id="entries" class="space-y-3"></div>
         </section>
     </div>
 </div>
